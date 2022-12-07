@@ -1,20 +1,51 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import styles from "./Card.module.css";
+import {setFavInStorage,isFavorited,removeFavInStorage} from "./utils/localStorage.service";
+import { ContextGlobal } from "./utils/global.context";
+import { useContext, useState } from "react";
 
 
 const Card = ({ name, username, id }) => {
+  const [favorite, setFavorite] = useState(() => isFavorited(id));
+  const { theme } = useContext(ContextGlobal);
+  const isDarkMode = theme === "dark" || false;
 
-  const addFav = ()=>{
-    // Aqui iria la logica para agregar la Card en el localStorage
-  }
+  const isFavorite = (favorite) => {
+    setFavorite(favorite);
+  };
 
-  return (
-    <div className="card">
-        {/* En cada card deberan mostrar en name - username y el id */}
+  const addFav = () => {
+    const favorite = setFavInStorage({ name, username, id });
+    isFavorite(favorite);
+  };
 
-        {/* No debes olvidar que la Card a su vez servira como Link hacia la pagina de detalle */}
+  const removeFav = () => {
+    const favorite = removeFavInStorage(id);
+    isFavorite(favorite);
+  };
 
-        {/* Ademas deberan integrar la logica para guardar cada Card en el localStorage */}
-        <button onClick={addFav} className="favButton">Add fav</button>
+ return (
+  <div className={`card ${isDarkMode ? styles.cardDark : ""}`}>
+      <img
+        className="card-img-top"
+        src="/images/doctor.jpg"
+        alt="imagen doctor"
+      />
+      <div className={`card-body ${styles.CardBody}`}>
+        <Link to={`/dentist/${id}`}>
+          <h5 className={`card-title ${styles.title}`}>{name}</h5>
+        </Link>
+        <p className="card-text">{usuario?.username}</p>
+        <button
+          onClick={favorite ? removeFav : addFav}
+          className={`btn btn-${isDarkMode ? "dark" : "light"} ${
+            styles.favButton
+          }`}
+        >
+          {favorite ? "Eliminar de favoritos" : "⭐ Agregar a favoritos"}
+        </button>
+      </div>
     </div>
   );
 };
