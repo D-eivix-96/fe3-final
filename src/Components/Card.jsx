@@ -36,7 +36,7 @@ const Card = ({ name, username, id }) => {
         <Link to={`/dentist/${id}`}>
           <h5 className={`card-title ${styles.title}`}>{name}</h5>
         </Link>
-        <p className="card-text">{usuario?.username}</p>
+        <p className="card-text">{username}</p>
         <button
           onClick={favorite ? removeFav : addFav}
           className={`btn btn-${isDarkMode ? "dark" : "light"} ${

@@ -8,6 +8,8 @@ import Contact from './Routes/Contact';
 import Detail from './Routes/Detail';
 import Favs from './Routes/Favs';
 import { ContextProvider } from "./Components/utils/global.context";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
