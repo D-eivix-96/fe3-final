@@ -23,7 +23,7 @@ const Navbar = () => {
       >
         <div className="container">
           <Link className={`navbar-brand ${styles.navbarBrand}`} to="/home">
-            DH Odonto
+            DH Odontología
           </Link>
           <button
             className="navbar-toggler"
@@ -49,7 +49,7 @@ const Navbar = () => {
               </li>
               <li className={`nav-item ${styles.navBarLink}`}>
                 <Link className="nav-link" to="/favs">
-                  Destacados
+                  Favoritos
                 </Link>
               </li>
               <li className={`nav-item ${styles.navBarLink}`}>
@@ -64,7 +64,7 @@ const Navbar = () => {
                   }`}
                   onClick={changeTheme}
                 >
-                  {isDarkMode ? "☀" : "🌙"}{" "}
+                  {isDarkMode ? "🌝" : "🌚"}{" "}
                 </button>
               </li>
             </ul>

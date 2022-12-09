@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate} from "react-router-dom";
 import styles from "./Card.module.css";
 import {setFavInStorage,isFavorited,removeFavInStorage} from "./utils/localStorage.service";
 import { ContextGlobal } from "./utils/global.context";
@@ -7,6 +7,7 @@ import { useContext, useState } from "react";
 
 
 const Card = ({ name, username, id }) => {
+  const navigate = useNavigate();
   const [favorite, setFavorite] = useState(() => isFavorited(id));
   const { theme } = useContext(ContextGlobal);
   const isDarkMode = theme === "dark" || false;
@@ -18,11 +19,13 @@ const Card = ({ name, username, id }) => {
   const addFav = () => {
     const favorite = setFavInStorage({ name, username, id });
     isFavorite(favorite);
-  };
+    navigate("/favs");
+};
 
   const removeFav = () => {
     const favorite = removeFavInStorage(id);
-    isFavorite(favorite);
+    isFavorite(favorite); 
+    navigate("/home");
   };
 
  return (
@@ -34,16 +37,17 @@ const Card = ({ name, username, id }) => {
       />
       <div className={`card-body ${styles.CardBody}`}>
         <Link to={`/dentist/${id}`}>
-          <h5 className={`card-title ${styles.title}`}>{name}</h5>
+          <h5 className={`card-title ${styles.title} `}>{name}</h5>
         </Link>
         <p className="card-text">{username}</p>
         <button
           onClick={favorite ? removeFav : addFav}
+        
           className={`btn btn-${isDarkMode ? "dark" : "light"} ${
             styles.favButton
           }`}
         >
-          {favorite ? "Eliminar de favoritos" : "⭐ Agregar a favoritos"}
+          {favorite ? "💔Eliminar de favoritos" : "❤️Agregar a favoritos"}
         </button>
       </div>
     </div>

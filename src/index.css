@@ -7,18 +7,29 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
 main{
-  min-height: calc(100vh - 292px);
+  min-height:100vh;
 }
 
 h1{
   text-align: center;
   padding: 2rem 0;
+}
+.list-group-item{
+  text-align: center;
+  border: solid red;
+}
+.list-group{
+  max-width: 30vw;
+  margin: auto;
+  margin-top: 20vh;
+  border: solid red;
 }
 
 .navbar-nav{
@@ -68,7 +79,20 @@ table {
     border: 1px solid #ccc;
 
 }
+.form{
+  max-width: 30vw;
+  border: solid red;
+  margin: auto;
+  margin-top: 15vh;
+  text-align: center;
+  border-radius: 5%;
+  padding: 3%;
+}
 
+.btn-form{
+ background-color:rgba(255,0,0,0.5);
+ margin-top: 10%;
+}
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
@@ -83,17 +107,16 @@ tr:nth-child(even) {
   background-color: #12121296;
   color: white;
 }
-.dark > a {
-  color: white;
-}
-
-.dark h5{
-  color: white;
+.dark  a {
+  color: rgb(226, 35, 35);
+  text-decoration: none;
 }
 
 .dark p {
-  color: #000;
+  color:rgb(225, 29, 29);
+  font-weight: 600;
 }
+
 
 @media(min-width: 786px) and (max-width: 1065px){
   .card-grid{

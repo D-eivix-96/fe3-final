@@ -1,9 +1,6 @@
-export const isFavorited = (id) => {
-    const localData = getFavFromStorage();
-    const isFavOnList = localData.filter(fav => {
-        return fav.id === id
-    });
-    return isFavOnList.length === 1;
+export const getFavFromStorage = () => {
+    const localData = localStorage.getItem("favoritos");
+    return localData ? JSON.parse(localData) : [];
 };
 
 export const setFavInStorage = (dentist) => {
@@ -13,34 +10,34 @@ export const setFavInStorage = (dentist) => {
     });
     if (isFavOnList.length === 0) {
         storageFavs.push(dentist)
-        localStorage.setItem("favs", JSON.stringify(storageFavs));
-        alert("Se ha agregado un dentista a destacados");
+        localStorage.setItem("favoritos", JSON.stringify(storageFavs));
         return true;
     }
     else {
-        alert("Este dentista ya esta en la lista de destacados");
+      
         return false;
     }
-};
-
-export const getFavFromStorage = () => {
-    const localData = localStorage.getItem("favs");
-    return localData ? JSON.parse(localData) : [];
-};
+}
 
 export const removeFavInStorage = (id) => {
     let storageFavs = getFavFromStorage();
     const index = storageFavs.findIndex(fav => fav.id === id);
     if (index !== -1) {
         storageFavs.splice(index, 1);
-        localStorage.setItem("favs", JSON.stringify(storageFavs));
-        alert("El dentista ha sido removido de la lista de destacados");
+        localStorage.setItem("favoritos", JSON.stringify(storageFavs));
     }
     else {
-        alert("Error");
+        alert("Ha ocurrido un error");
     }
-};
+}
 
+export const isFavorited = (id) => {
+    const localData = getFavFromStorage();
+    const isFavOnList = localData.filter(fav => {
+        return fav.id === id
+    });
+    return isFavOnList.length === 1;
+};
 
 
 
